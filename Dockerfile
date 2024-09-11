@@ -56,7 +56,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN echo "<?php phpinfo() ?>" > /var/www/html/index.php ; \
 mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor ; \
-a2enmod rewrite  ;\
+a2enmod rewrite  ; \
 sed -i -e '/memory_limit =/ s/= .*/= 2056M/' /etc/php/8.3/apache2/php.ini ; \
 sed -i -e '/post_max_size =/ s/= .*/= 800M/' /etc/php/8.3/apache2/php.ini ; \
 sed -i -e '/max_file_uploads =/ s/= .*/= 200/' /etc/php/8.3/apache2/php.ini ; \
