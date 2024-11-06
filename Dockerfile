@@ -72,6 +72,12 @@ echo 'open_basedir = "/"' >> /etc/php/8.3/apache2/php.ini ;
 RUN  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin 
 RUN ln  -s /usr/bin/composer.phar /usr/bin/composer 
 
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
+RUN php wp-cli.phar --info
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
+
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 22 80
